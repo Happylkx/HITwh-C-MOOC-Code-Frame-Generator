@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<CodePack>
+  <Code>
+    <FunctionName>判断素数fun_isPrime</FunctionName>
+    <FunctionPrototype>  int fun_isPrime(int n);</FunctionPrototype>
+    <Content>int fun_isPrime(int n){
+    int i;
+    for (i=2;i&lt;sqrt(n);i++){
+        if(n%2==0) return 1;
+    }
+    return 0;
+}</Content>
+  </Code>
+  <Code>
+    <FunctionName>最大公因数fun_GCF</FunctionName>
+    <FunctionPrototype>  int fun_GCF(int a, int b);</FunctionPrototype>
+    <Content>int fun_GCF(int a,int b){
+    if (a==b) return a;
+    else if(a&gt;b) return fun_GCF(a-b,b);
+    else return fun_GCF(b-a,a);
+}</Content>
+  </Code>
+  <Code>
+    <FunctionName>最小公倍数fun_LCM</FunctionName>
+    <FunctionPrototype>  int fun_LCM(int a, int b);</FunctionPrototype>
+    <Content>int fun_LCM(int a,int b)
+{
+    if(a&lt;b) return fun_LCM(b,a);
+    else
+    {
+        int i=1;
+        while (i*a%b!=0)
+        {
+            i++;
+        }
+        return i*a;
+    }
+}</Content>
+</Code>
+
+  <Code>
+    <FunctionName>冒泡排序(升序)fun_BubbleSort</FunctionName>
+    <FunctionPrototype>  int fun_BubbleSort(int a[100],int n);</FunctionPrototype>
+    <Content>int fun_BubbleSort(int a[100],int n){
+    int i,j;
+    for (i=0;i&lt;n;i++){
+        for(j=0;j&lt;n-i;j++) {
+            if(a[j]&gt;a[j+1]){
+                int t=a[j];
+                a[j]=a[j+1];
+                a[j+1]=t;
+            }
+        }
+    }
+    return 0;
+}</Content>
+</Code>
+
+  <Code>
+    <FunctionName>快速排序(升序)fun_quickSortAscending</FunctionName>
+    <FunctionPrototype>  void fun_quickSortAscending(int a[],int left,int right);</FunctionPrototype>
+    <Content>///快速排序 参数为：数组，开始排序的下标，结束排序的下标
+void fun_quickSortAscending(int a[],int left,int right)
+{
+    int i=left;
+    int j=right;
+    int temp=a[left];
+    if(left&gt;=right)
+        return;
+    while(i!=j)
+    {
+        while(i&lt;j&amp;&amp;a[j]&gt;=temp)
+            j--;
+        if(j&gt;i)
+            a[i]=a[j];//a[i]已经赋值给temp,所以直接将a[j]赋值给a[i],赋值完之后a[j],有空位
+        while(i&lt;j&amp;&amp;a[i]&lt;=temp)
+            i++;
+        if(i&lt;j)
+            a[j]=a[i];
+    }
+    a[i]=temp;//把基准插入,此时i与j已经相等R[low..pivotpos-1].keys≤R[pivotpos].key≤R[pivotpos+1..high].keys
+    fun_quickSortAscending(a,left,i-1);/*递归左边*/
+    fun_quickSortAscending(a,i+1,right);/*递归右边*/
+}
+</Content>
+</Code>
+
+<Code>
+    <FunctionName>阶乘long fun_Factorial</FunctionName>
+    <FunctionPrototype>  long fun_Factorial(int n);</FunctionPrototype>
+    <Content>///阶乘
+long fun_Factorial(int n)
+{
+int i;
+long s = 1;
+for (i = 1;i &lt;= n;i++)
+s *= i;
+return(s);
+}
+</Content>
+</Code>
+
+<Code>
+    <FunctionName>闰年判断fun_IsLeapYear</FunctionName>
+    <FunctionPrototype>  int fun_IsLeapYear(int a);</FunctionPrototype>
+    <Content>///判断是否为闰年
+int fun_IsLeapYear(int a)
+{
+  if(((a%4==0)&amp;&amp;(a%100!=0))||(a%400==0)) return 1;
+  else return 0;
+}
+
+</Content>
+</Code>
+<Code>
+    <FunctionName>数组倒序fun_Reverse</FunctionName>
+    <FunctionPrototype>  void fun_Reverse(int num[],int n);</FunctionPrototype>
+    <Content>///数组倒序，操作n个元素
+void fun_Reverse(int num[],int n){
+    int i,temp;
+    for (i=0;i&lt;n/2;i++){
+        temp=num[i];
+        num[i]=num[n-i-1];
+        num[n-i-1]=temp;
+    }
+}
+</Content>
+</Code>
+<Code>
+    <FunctionName>数组最大值fun_FindMax</FunctionName>
+    <FunctionPrototype>  int fun_FindMax(int num[], int n, int *pMaxPos);</FunctionPrototype>
+    <Content>///函数功能：求有n个元素的整型数组num中的最大值及其所在下标位置，函数返回最大值
+int fun_FindMax(int num[], int n, int *pMaxPos)
+{
+    int i, max;
+    max = num[0];//假设num[0]为最大值
+    *pMaxPos=0;//假设最大值在数组中的下标位置为0
+    for (i=1; i&lt;n; i++)
+    {
+        if (num[i] &gt; max)
+        {
+            max = num[i];
+            *pMaxPos=i;  //pMaxPos指向最大值数组元素的下标位置
+        }
+    }
+    return max;
+}</Content>
+</Code>
+
+<Code>
+    <FunctionName>数组最小值fun_FindMin</FunctionName>
+    <FunctionPrototype>  int fun_FindMin(int num[], int n, int *pMinPos);</FunctionPrototype>
+    <Content>///函数功能：求有n个元素的整型数组num中的最小值及其所在下标位置，函数返回最小值
+int fun_FindMin(int num[], int n, int *pMinPos)
+{
+    int i, min;
+    min = num[0];            //假设num[0]为最小
+    *pMinPos=0;            //假设最小值在数组中的下标位置为0
+    for (i=1; i&lt;10; i++)
+    {
+        if (num[i] &lt; min)
+        {
+            min = num[i];
+            *pMinPos=i;  //pMinPos指向最小值数组元素的下标位置
+        }
+    }
+    return min;
+}
+</Content>
+</Code>
+</CodePack>
